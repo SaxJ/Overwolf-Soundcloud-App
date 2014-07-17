@@ -2,13 +2,13 @@
 	"manifest_version":1,
 	"type":"WebApp",
 	"meta":{
-		"name":"Demo App",
+		"name":"Soundcloud Player",
 		"version":"1.0.0",
 		"minimum-overwolf-version":"0.77.10",
-		"author":"Developer Name",
+		"author":"Saxon Jensen",
 		"icon":"IconMouseOver.png",
 		"icon_gray":"IconMouseNormal.png",
-		"description":"Demo App"
+		"description":"A simple sound cloud player, allowing you to stream your soundcloud playlists while you pwn n00bs."
 	},
 	"data": {
 		"start_window":"MainWindow",
