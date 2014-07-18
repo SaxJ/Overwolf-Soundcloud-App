@@ -6,11 +6,7 @@
     	function linkAndClose() {
     		rand = Math.random();
     		localStorage.setItem('authChange', rand);
-    		overwolf.windows.getCurrentWindow(function(result){
-				if (result.status=="success"){
-					overwolf.windows.close(result.window.id);
-				}
-			});
+    		window.close();
     	}
     </script>
   </head>
