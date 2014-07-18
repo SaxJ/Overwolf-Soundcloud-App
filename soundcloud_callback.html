@@ -4,13 +4,13 @@
     <title>Connect with SoundCloud</title>
     <script type="text/javascript">
     	function linkAndClose() {
-    		console.log(window.opener);
-    		window.opener.setTimeout(window.opener.SC.connectCallback, 1)
+    		rand = Math.random();
+    		localStorage.setItem('authChange', rand);
     		overwolf.windows.getCurrentWindow(function(result){
-					if (result.status=="success"){
-						overwolf.windows.close(result.window.id);
-					}
-				});
+				if (result.status=="success"){
+					overwolf.windows.close(result.window.id);
+				}
+			});
     	}
     </script>
   </head>
