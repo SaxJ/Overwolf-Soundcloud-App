@@ -2,15 +2,8 @@
 <html lang="en">
   <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Connect with SoundCloud</title>
-    <script type="text/javascript">
-    	function linkAndClose() {
-    		rand = Math.random();
-    		localStorage.setItem('authChange', rand);
-    		window.close();
-    	}
-    </script>
   </head>
-  <body onload="linkAndClose();">
-    <b style="width: 100%; text-align: center;">This popup should automatically close sooooon!</b>
+  <body onload="window.opener.setTimeout(window.opener.SC.connectCallback, 1)">
+    <b style="width: 100%; text-align: center;">This popup should automatically close in a few seconds</b>
   </body>
 </html>
