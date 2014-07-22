@@ -1,0 +1,17 @@
+.container-fluid
+  .row
+    .col-lg-2.
+      Search: <input ng-model="query" />
+      Sort By:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+
+    .col-lg-10
+      ul
+        li.thumbnail(ng-repeat="phone in phones | filter:query | orderBy: orderProp")
+          a.thumb(href="#/phones{{phone.id}}")
+            img(ng-src="{{phone.imageUrl")
+          a(href="#/phones/{{phone.id}}") {{phone.name}}
+          p {{phone.snippet}}

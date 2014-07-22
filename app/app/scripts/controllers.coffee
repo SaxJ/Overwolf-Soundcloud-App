@@ -1,8 +1,21 @@
-App = angular.module 'SoundCloudPlayer', []
+SoundCloudPlayerControllers = angular.module 'SoundCloudPlayer.controllers', []
 
-App.controller 'AppController', ($scope) ->
-  $scope.items = [
-    {'name': 'Nexus S', 'snippet': 'Fast just got faster with Nexus S.'},
-    {'name': 'Motorola XOOM™ with Wi-Fi', 'snippet': 'The Next, Next Generation tablet.'},
-    {'name': 'MOTOROLA XOOM™', 'snippet': 'The Next, Next Generation tablet.'}
-  ]
+SoundCloudPlayerControllers.controller 'ListController', [
+  '$scope'
+  '$http'
+
+($scope, $http) ->
+  $http.get('phones/phones.json').success (data) ->
+    console.log data
+    $scope.phones = data
+
+  $scope.orderProp = 'age'
+]
+
+SoundCloudPlayerControllers.controller 'DetailController', [
+  '$scope'
+  '$routeParams'
+
+  ($scope, $routeParams) ->
+    $scope.phoneId = $routeParams.phoneId
+]

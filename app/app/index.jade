@@ -21,16 +21,6 @@ html(lang='en', ng-app='SoundCloudPlayer')
     script(src='/js/vendor.js')
     script(src='/js/partials.js')
     script(src='/js/app.js')
-  body(ng-controller='AppController')
-    .container-fluid
-      .row
-        .col-lg-2.
-          Search: <input ng-model="query" />
-
-        .col-lg-10
-          ul
-            li(ng-repeat="i in items | filter:query").
-              {{i.name}}
-              <br />
-              {{i.snippet}}
+  body
+    div(ng-view)
       

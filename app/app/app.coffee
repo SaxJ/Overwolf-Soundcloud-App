@@ -1,14 +1,11 @@
 'use strict'
 
 # Declare app level module which depends on filters, and services
-App = angular.module('app', [
+App = angular.module('SoundCloudPlayer', [
   'ngCookies'
   'ngResource'
   'ngRoute'
-  'app.controllers'
-  'app.directives'
-  'app.filters'
-  'app.services'
+  'SoundCloudPlayer.controllers'
   'partials'
 ])
 
@@ -20,12 +17,15 @@ App.config([
 
   $routeProvider
 
-    .when('/todo', {templateUrl: '/partials/todo.html'})
-    .when('/view1', {templateUrl: '/partials/partial1.html'})
-    .when('/view2', {templateUrl: '/partials/partial2.html'})
+    .when '/phones',
+      templateUrl: '/partials/list.html'
+      controller: 'ListController'
+    .when '/phones/:phoneId',
+      templateUrl: '/partials/partial1.html'
+      controller: 'DetailController'
 
     # Catch all
-    .otherwise({redirectTo: '/todo'})
+    .otherwise({redirectTo: '/phones'})
 
   # Without server side support html5 must be disabled.
   $locationProvider.html5Mode(false)
