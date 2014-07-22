@@ -1,7 +1,7 @@
 {
-  "name": "brunch-with-edge-benedict",
-  "repo": "codevinsky/brunch-with-edge-benedict",
-  "version": "1.2",
+  "name": "angular-brunch-seed",
+  "repo": "scotch/angular-brunch-seed",
+  "version": "0.3.0",
   "main": "_public/js/app.js",
   "ignore": [
     "**/.*",
@@ -11,12 +11,24 @@
   "dependencies": {
     "console-polyfill": "~0.1.0",
     "jquery": "~2.0.3",
-    "bootstrap": "~3.0.3",
-    "angular": "1.2.8",
-    "angular-route": "1.2.8",
-    "sling-ui": "0.3.1.2"
+    "bootstrap-less": "~2.3.2",
+    "bootstrap-less-themes": "https://github.com/angular-brunch/bootstrap-less-themes.git",
+    "angular-bootstrap": "~0.5.0",
+    "angular": "1.2.5",
+    "angular-sanitize": "1.2.5",
+    "angular-resource": "1.2.5",
+    "angular-route": "1.2.5",
+    "angular-cookies": "1.2.5",
+    "angular-mocks": "1.2.5"
   },
-  "resolutions": {
-    "angular": "1.2.8"
+  "overrides": {
+    "bootstrap-less": {
+      "ignore": [
+        "*"
+      ]
+    },
+    "angular-mocks": {
+      "main": "README.md"
+    }
   }
 }

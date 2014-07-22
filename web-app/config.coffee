@@ -1,7 +1,8 @@
 exports.config =
   # See docs at http://brunch.readthedocs.org/en/latest/config.html.
   conventions:
-    assets: /^app\/assets\//
+    assets:  /^app\/assets\//
+    ignored: /^(bower_components\/bootstrap-less(-themes)?|app\/styles\/overrides|(.*?\/)?[_]\w*)/
   modules:
     definition: false
     wrapper: false
@@ -22,7 +23,7 @@ exports.config =
         ]
 
     templates:
-      joinTo: 
+      joinTo:
         'js/dontUseMe' : /^app/ # dirty hack for Jade compiling.
 
   plugins:
@@ -31,10 +32,6 @@ exports.config =
     jade_angular:
       modules_folder: 'partials'
       locals: {}
-  server: 
-    path: 'server/server.coffee'
-    port: 3333
-    base: '/'
-    run: yes
+
   # Enable or disable minifying of result js / css files.
   # minify: true

@@ -1,10 +1,7 @@
-app = angular.module 'app'
+'use strict'
 
-app.factory 'TableService', ($q, $http) ->
-	return  {
-		getData: -> 
-			deferred = $q.defer()
-			$http.get('/api/people').then (response) ->
-				deferred.resolve response.data
-			deferred.promise
-		}
+### Sevices ###
+
+angular.module('app.services', [])
+
+.factory 'version', -> "0.1"
