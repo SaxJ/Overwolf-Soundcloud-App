@@ -21,7 +21,7 @@ App.config([
       templateUrl: '/partials/list.html'
       controller: 'ListController'
     .when '/phones/:phoneId',
-      templateUrl: '/partials/partial1.html'
+      templateUrl: '/partials/detail.html'
       controller: 'DetailController'
 
     # Catch all
