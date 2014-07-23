@@ -29,19 +29,25 @@ html(lang='en', ng-app='app')
     script(src='/js/app.js')
   body(ng-controller='AppCtrl')
     .wrapper
-      .navbar.navbar-static-top
+      .navbar.navbar-static-top.navbar-inverse(role="navigation")
         .navbar-inner
           .container
             button.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a(href='/').brand Angular Brunch Seed
+            a(href='/').brand Sound Cloud ++
+            
             .nav-collapse
-              div(ng-include="'/partials/nav.html'")
+              div.navbar-left(ng-include="'/partials/nav.html'")
+              .navbar-text(ng-if="authenticated") {{me.username}}
+              button.navbar-btn.btn.btn-default(ng-if="!authenticated", ng-click="login()") Login
+
       .container.main-content
-        div(ng-view)
-        div Angular Brunch seed app: v<span app-version></span>
+        #sidebar-wrapper
+          p  Hello my name is, my name is, my name is slim shady!
+
+        #page-content-wrapper(ng-view)
       .push
 
     footer.footer

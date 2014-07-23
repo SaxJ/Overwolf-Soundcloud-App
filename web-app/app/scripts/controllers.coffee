@@ -11,8 +11,9 @@ angular.module('app.controllers', [
   '$location'
   '$resource'
   '$rootScope'
+  'soundcloud'
 
-($scope, $location, $resource, $rootScope) ->
+($scope, $location, $resource, $rootScope, soundcloud) ->
 
   # Uses the url to determine if the selected
   # menu item should have the class active.
@@ -20,6 +21,9 @@ angular.module('app.controllers', [
   $scope.$watch('$location.path()', (path) ->
     $scope.activeNavId = path || '/'
   )
+
+  $scope.login = ->
+    soundcloud.login()
 
   # getClass compares the current url with the id.
   # If the current url starts with the id it returns 'active'
@@ -65,10 +69,7 @@ angular.module('app.controllers', [
         $scope.playlists = pls
 
   $scope.login = ->
-    SC.connect ->
-      soundcloud.getMe (me) ->
-        $scope.$apply ->
-          $scope.me = me
+    soundcloud.login()
 
 ])
 
