@@ -2,7 +2,9 @@
 
 ### Controllers ###
 
-angular.module('app.controllers', [])
+angular.module('app.controllers', [
+  'app.services'
+])
 
 .controller('AppCtrl', [
   '$scope'
@@ -39,6 +41,9 @@ angular.module('app.controllers', [])
 
 ($scope) ->
   $scope.onePlusOne = 2
+  $scope.toggle = false
+  $scope.doThing = ->
+    $scope.toggle = !$scope.toggle
 ])
 
 .controller('MyCtrl2', [
@@ -46,6 +51,25 @@ angular.module('app.controllers', [])
 
 ($scope) ->
   $scope
+])
+
+.controller('HomeCtrl', [
+  '$scope'
+  'soundcloud'
+
+($scope, soundcloud) ->
+  
+  $scope.getPlaylists = ->
+    soundcloud.getPlaylists (pls) ->
+      $scope.$apply ->
+        $scope.playlists = pls
+
+  $scope.login = ->
+    SC.connect ->
+      soundcloud.getMe (me) ->
+        $scope.$apply ->
+          $scope.me = me
+
 ])
 
 .controller('TodoCtrl', [

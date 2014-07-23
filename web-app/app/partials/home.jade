@@ -1,0 +1,8 @@
+p {{me.username}}
+p {{loggedIn}}
+button(ng-click="login()") Login
+button(ng-click="getPlaylists()") Playlists
+
+ul
+  li(ng-repeat="list in playlists")
+    p {{list.title}}

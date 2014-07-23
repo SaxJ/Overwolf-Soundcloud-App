@@ -21,8 +21,9 @@ App.config([
   $routeProvider
 
     .when('/todo', {templateUrl: '/partials/todo.html'})
-    .when('/view1', {templateUrl: '/partials/partial1.html'})
+    .when('/view1', {templateUrl: '/partials/partial1.html', controller: 'MyCtrl1'})
     .when('/view2', {templateUrl: '/partials/partial2.html'})
+    .when('/home', {templateUrl: '/partials/home.html', controller: 'HomeCtrl'})
 
     # Catch all
     .otherwise({redirectTo: '/todo'})
