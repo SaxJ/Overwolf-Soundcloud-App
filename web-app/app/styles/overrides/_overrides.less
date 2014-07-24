@@ -65,11 +65,38 @@ body {
   }
 }
 
+#play-bar {
+  height: @navbarHeight;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: @topBarZIndex + 2;
+  background-color: @grayDarker;
+  color: @white;
+  text-align: center;
+  line-height: @navbarHeight;
+
+  div {
+    display: inline-block;
+  }
+
+  .panel-left {
+    float: left;
+    margin-left: 15px;
+  }
+
+  .panel-right {
+    float: right;
+    margin-right: 15px;
+  }
+}
+
 #content-pane {
   position: absolute;
   top: @navbarHeight;
   left: 0px;
-  bottom: 0px;
+  bottom: @navbarHeight;
   right: 0px;
   background-color: @grayLighter;
 
@@ -84,6 +111,7 @@ body {
     color: @white;
     .box-shadow();
     z-index: @topBarZIndex - 1;
+    overflow-y: scroll;
 
     ul {
       list-style-type: none;
@@ -120,5 +148,38 @@ body {
     background-color: @grayLighter;
     padding: 10px;
     z-index: @topBarZIndex;
+    overflow-y: scroll;
+
+    .details {
+      padding-left: 15px;
+    }
+
+    .collection {
+      table {
+        width: 100%;
+
+        th {
+          text-align: left;
+          padding: 10px 0 10px 15px;
+        }
+        
+        tr {
+          td {
+            padding: 10px 0 10px 15px;
+          }
+
+          &:hover {
+            background-color: @grayLight;
+            cursor: pointer;
+          }
+
+          &:first-child:hover {
+            background-color: transparent;
+            cursor: default;
+          }
+        }
+      }
+
+    }
   }
 }

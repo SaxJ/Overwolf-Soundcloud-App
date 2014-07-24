@@ -14,6 +14,7 @@ angular.module('app.controllers', [
   'soundcloud'
 
 ($scope, $location, $resource, $rootScope, soundcloud) ->
+  $scope.Math = window.Math
 
   # Uses the url to determine if the selected
   # menu item should have the class active.
@@ -50,27 +51,12 @@ angular.module('app.controllers', [
     $scope.toggle = !$scope.toggle
 ])
 
-.controller('MyCtrl2', [
-  '$scope'
-
-($scope) ->
-  $scope
-])
-
-.controller('HomeCtrl', [
+.controller('FavoritesCtrl', [
   '$scope'
   'soundcloud'
 
 ($scope, soundcloud) ->
-  
-  $scope.getPlaylists = ->
-    soundcloud.getPlaylists (pls) ->
-      $scope.$apply ->
-        $scope.playlists = pls
-
-  $scope.login = ->
-    soundcloud.login()
-
+  soundcloud.getFavorites()
 ])
 
 .controller('TodoCtrl', [

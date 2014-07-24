@@ -10,10 +10,12 @@ angular.module('app.services', [])
 ($rootScope) ->
   soundcloud = {}
 
-  soundcloud.login = ->
+  soundcloud.login = (callback) ->
     SC.connect ->
       $rootScope.$apply ->
         $rootScope.authenticated = true
+        if callback?
+          callback()
       SC.get '/me', (me) ->
         $rootScope.$apply ->
           $rootScope.me = me
@@ -24,6 +26,15 @@ angular.module('app.services', [])
 
   soundcloud.getMe = (callback) ->
     SC.get '/me', callback
+
+  soundcloud.getFavorites = ->
+    SC.get '/me/favorites', (lst) ->
+      if not lst.errors
+        $rootScope.$apply ->
+          $rootScope.activeTrackList = lst
+      else
+        soundcloud.login ->
+          soundcloud.getFavorites()
 
   soundcloud.getPlaylists = (id, callback) ->
     SC.get "/users/#{id}/playlists", callback

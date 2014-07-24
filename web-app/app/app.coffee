@@ -20,13 +20,10 @@ App.config([
 
   $routeProvider
 
-    .when('/todo', {templateUrl: '/partials/todo.html'})
-    .when('/view1', {templateUrl: '/partials/partial1.html', controller: 'MyCtrl1'})
-    .when('/view2', {templateUrl: '/partials/partial2.html'})
-    .when('/home', {templateUrl: '/partials/home.html', controller: 'HomeCtrl'})
+    .when('/favorites', {templateUrl: '/partials/favorites.html', controller: 'FavoritesCtrl'})
 
     # Catch all
-    .otherwise({redirectTo: '/todo'})
+    .otherwise({redirectTo: '/favorites'})
 
   # Without server side support html5 must be disabled.
   $locationProvider.html5Mode(false)

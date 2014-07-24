@@ -53,3 +53,14 @@ html(lang='en', ng-app='app')
             a(ng-href="#/playlist/{{playlist.id}}") {{playlist.title}}
 
       #view-pane(ng-view)
+
+    #play-bar
+      .panel-left
+        button.btn.btn-default(ng-click="playActiveTrack()") Play
+      
+      .panel-centre
+        progress.play-progress
+
+      .panel-right
+        span Vol
+
