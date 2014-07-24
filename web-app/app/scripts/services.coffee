@@ -18,11 +18,15 @@ angular.module('app.services', [])
         $rootScope.$apply ->
           $rootScope.me = me
 
+        SC.get '/me/playlists', (pls) ->
+          $rootScope.$apply ->
+            $rootScope.me.playlists = pls
+
   soundcloud.getMe = (callback) ->
     SC.get '/me', callback
 
-  soundcloud.getPlaylists = (callback) ->
-    SC.get '/me/playlists', callback
+  soundcloud.getPlaylists = (id, callback) ->
+    SC.get "/users/#{id}/playlists", callback
 
   return soundcloud
 ])

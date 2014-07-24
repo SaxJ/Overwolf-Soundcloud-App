@@ -28,30 +28,28 @@ html(lang='en', ng-app='app')
     script(src='/js/partials.js')
     script(src='/js/app.js')
   body(ng-controller='AppCtrl')
-    .wrapper
-      .navbar.navbar-static-top.navbar-inverse(role="navigation")
-        .navbar-inner
-          .container
-            button.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a(href='/').brand Sound Cloud ++
+    #top-bar
+      .top-bar-left
+        span Sound Cloud Player
+
+      .top-bar-right
+        img.profile-pic(ng-src="{{me.avatar_url}}", ng-if="authenticated")
+        span.top-bar-text(ng-if="authenticated"): a(ng-href="{{me.permalink_url}}") {{me.username}}
+        button.btn.btn-default(ng-if="!authenticated", ng-click="login()") Login
+
+    #content-pane
+      #side-pane
+        ul
+          li
+            span Favourites
+            span {{me.public_favorites_count}}
+          li
+            span Following
+            span {{me.followings_count}}
             
-            .nav-collapse
-              div.navbar-left(ng-include="'/partials/nav.html'")
-              .navbar-text(ng-if="authenticated") {{me.username}}
-              button.navbar-btn.btn.btn-default(ng-if="!authenticated", ng-click="login()") Login
+        ul(ng-if="me.playlists")
+          li.header Playlists
+          li(ng-repeat="playlist in me.playlists")
+            a(ng-href="#/playlist/{{playlist.id}}") {{playlist.title}}
 
-      .container.main-content
-        #sidebar-wrapper
-          p  Hello my name is, my name is, my name is slim shady!
-
-        #page-content-wrapper(ng-view)
-      .push
-
-    footer.footer
-      .container
-        p
-          small
-            a(href='https://github.com/scotch/angular-brunch-seed') angular-brunch-seed | source
+      #view-pane(ng-view)

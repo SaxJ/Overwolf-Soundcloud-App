@@ -1,7 +1,8 @@
-/*
-Place custom styles here. These styles should loaded after
-bootstrap, so they may override it's behavior.
-*/
+.box-shadow {
+  -webkit-box-shadow: 0px 0px 22px 0px rgba(50, 50, 50, 0.68);
+  -moz-box-shadow:    0px 0px 22px 0px rgba(50, 50, 50, 0.68);
+  box-shadow:         0px 0px 22px 0px rgba(50, 50, 50, 0.68);
+}
 
 // Footer
 .footer {
@@ -16,9 +17,108 @@ bootstrap, so they may override it's behavior.
   color: grey;
 }
 
-.navbar {
-  .btn, .navbar-text {
-    float: right;
+body {
+  position: relative;
+
+  a, a:hover, a:active {
+    color: @grayLighter;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: @grayLight;
   }
 }
 
+#top-bar {
+  background-color: @grayDarker;
+  color: @white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: @navbarHeight;
+  width: 100%;
+  font-size: 20px;
+  line-height: @navbarHeight;
+  .box-shadow();
+  z-index: @topBarZIndex + 1;
+
+  .top-bar-left {
+    float: left;
+    margin-left: 15px;
+  }
+
+  .top-bar-right {
+    float: right;
+    margin-right: 15px;
+
+    img, span {
+      margin: 0 5px 0 5px;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+#content-pane {
+  position: absolute;
+  top: @navbarHeight;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-color: @grayLighter;
+
+  #side-pane {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: @sidePanelWidth;
+    background-color: @grayDarker;
+    padding: 10px;
+    color: @white;
+    .box-shadow();
+    z-index: @topBarZIndex - 1;
+
+    ul {
+      list-style-type: none;
+
+      &:last-child {
+        padding-top: 15px;
+      }
+
+      li {
+        margin: 10px 0 10px 0;
+
+        span {
+          margin: 0px 3px 0 3px;
+        }
+
+        span:last-child {
+          font-weight: bold;
+        }
+      }
+
+      li.header {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  #view-pane {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: @sidePanelWidth;
+    right: 0px;
+    background-color: @grayLighter;
+    padding: 10px;
+    z-index: @topBarZIndex;
+  }
+}
