@@ -57,6 +57,9 @@ angular.module('app.controllers', [
 
 ($scope, soundcloud) ->
   soundcloud.getFavorites()
+
+  $scope.playFromIndex = (ind) ->
+    soundcloud.playFromIndex(ind)
 ])
 
 .controller('TodoCtrl', [
