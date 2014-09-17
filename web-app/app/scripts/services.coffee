@@ -9,6 +9,7 @@ angular.module('app.services', [])
 
 ($rootScope) ->
   soundcloud = {}
+  $rootScope.activeTrackList = []
 
   soundcloud.login = (callback) ->
     SC.connect ->
@@ -38,6 +39,10 @@ angular.module('app.services', [])
 
   soundcloud.getPlaylists = (id, callback) ->
     SC.get "/users/#{id}/playlists", callback
+
+  soundcloud.playFromIndex(index) {
+    
+  }
 
   return soundcloud
 ])
