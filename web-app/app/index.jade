@@ -36,7 +36,8 @@ html(lang='en', ng-app='app')
       #side-pane
         ul
           li
-            span Favourites
+            span
+              a(ng-href="#/favorites") Favourites
             span {{me.public_favorites_count}}
           li
             span Following
