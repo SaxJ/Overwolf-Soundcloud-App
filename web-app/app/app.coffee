@@ -21,6 +21,9 @@ App.config([
   $routeProvider
 
     .when('/favorites', {templateUrl: '/partials/favorites.html', controller: 'FavoritesCtrl'})
+    .when '/playlist/:playlistId',
+      templateUrl: '/partials/playlist.html'
+      controller: 'PlaylistCtrl'
 
     # Catch all
     .otherwise({redirectTo: '/favorites'})

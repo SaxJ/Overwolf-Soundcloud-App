@@ -23,8 +23,8 @@ angular.module('app.controllers', [
     $scope.activeNavId = path || '/'
   )
 
-  $scope.login = ->
-    soundcloud.initialize()
+  soundcloud.initialize ->
+    soundcloud.getProfile()
 
   # getClass compares the current url with the id.
   # If the current url starts with the id it returns 'active'
