@@ -43,7 +43,8 @@ angular.module('app.services', [])
       SC.get '/me/playlists', (pls) ->
         $rootScope.$apply ->
           $rootScope.me.playlists = pls
-        callback()
+        if callback
+          callback()
 
   soundcloud.getFavorites = ->
     SC.get '/me/favorites', (lst) ->
@@ -58,12 +59,11 @@ angular.module('app.services', [])
 
   soundcloud.playFromIndex = (index) ->
     console.log 'Play from index: ', index
+    if $rootScope.activeTrack?
+      $rootScope.activeTrack.pause()
+      $rootScope.activeTrack.unload()
     SC.stream "/tracks/#{$rootScope.activeTrackList[index].id}", (sound) ->
-      $rootScope.$apply ->
-        if $rootScope.activeTrack?
-          $rootScope.activeTrack.stop()
-
-        $rootScope.activeTrack = sound
+      $rootScope.activeTrack = sound
       sound.play()
     return
 
