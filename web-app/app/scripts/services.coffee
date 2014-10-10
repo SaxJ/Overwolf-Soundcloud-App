@@ -53,8 +53,8 @@ angular.module('app.services', [])
       else
         throw new Error('AN error occurred in fetching favourites.')
 
-  soundcloud.getPlaylists = (id, callback) ->
-    SC.get "/users/#{id}/playlists", callback
+  soundcloud.getPlaylist = (id, callback) ->
+    SC.get "/playlists/#{id}", callback
 
   soundcloud.playFromIndex = (index) ->
     console.log 'Play from index: ', index

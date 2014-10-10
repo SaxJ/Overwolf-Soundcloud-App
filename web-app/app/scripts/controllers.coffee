@@ -51,6 +51,23 @@ angular.module('app.controllers', [
     $scope.toggle = !$scope.toggle
 ])
 
+.controller('PlaylistCtrl', [
+  '$scope'
+  '$rootScope'
+  '$routeParams'
+  'soundcloud'
+
+($scope, $rootScope, $routeParams, soundcloud) ->
+  soundcloud.getPlaylist $routeParams.playlistId, (pls) ->
+    $rootScope.$apply ->
+      $rootScope.activeTrackList = pls.tracks
+    $scope.$apply ->
+      $scope.playlist = pls
+
+  $scope.playFromIndex = (ind) ->
+    soundcloud.playFromIndex(ind)
+])
+
 .controller('FavoritesCtrl', [
   '$scope'
   'soundcloud'
