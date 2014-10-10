@@ -24,7 +24,7 @@ angular.module('app.controllers', [
   )
 
   $scope.login = ->
-    soundcloud.login()
+    soundcloud.initialize()
 
   # getClass compares the current url with the id.
   # If the current url starts with the id it returns 'active'

@@ -9,24 +9,41 @@ angular.module('app.services', [])
 
 ($rootScope) ->
   soundcloud = {}
-  $rootScope.activeTrackList = []
 
-  soundcloud.login = (callback) ->
-    SC.connect ->
-      $rootScope.$apply ->
-        $rootScope.authenticated = true
-        if callback?
-          callback()
-      SC.get '/me', (me) ->
+  ###
+  #Initializes the soundcloud client, uses the old access token, or logging in
+  #if needed.
+  ###
+  soundcloud.initialize = (callback)->
+    $rootScope.activeTrackList = $rootScope.activeTrackList or []
+    $rootScope.activeTrack = $rootScope.activeTrack or null
+    $rootScope.soundcloud_auth = false
+    if localStorage.getItem 'auth_token'
+      $rootScope.soundcloud_auth = true
+      SC.initialize
+        client_id: "8e78602bbc355a3d2b21f9af620ffe74"
+        redirect_uri: "http://localhost:3333/callback.html"
+        access_token: localStorage.getItem 'auth_token'
+      if callback
+        callback()
+    else
+      SC.connect ->
         $rootScope.$apply ->
-          $rootScope.me = me
+          $rootScope.soundcloud_auth = true
+        localStorage.setItem 'auth_token', SC.accessToken()
 
-        SC.get '/me/playlists', (pls) ->
-          $rootScope.$apply ->
-            $rootScope.me.playlists = pls
+        if callback
+          callback()
 
-  soundcloud.getMe = (callback) ->
-    SC.get '/me', callback
+  soundcloud.getProfile = (callback) ->
+    SC.get '/me', (me) ->
+      $rootScope.$apply ->
+        $rootScope.me = me
+
+      SC.get '/me/playlists', (pls) ->
+        $rootScope.$apply ->
+          $rootScope.me.playlists = pls
+        callback()
 
   soundcloud.getFavorites = ->
     SC.get '/me/favorites', (lst) ->
@@ -34,15 +51,21 @@ angular.module('app.services', [])
         $rootScope.$apply ->
           $rootScope.activeTrackList = lst
       else
-        soundcloud.login ->
-          soundcloud.getFavorites()
+        throw new Error('AN error occurred in fetching favourites.')
 
   soundcloud.getPlaylists = (id, callback) ->
     SC.get "/users/#{id}/playlists", callback
 
-  soundcloud.playFromIndex(index) {
-    
-  }
+  soundcloud.playFromIndex = (index) ->
+    console.log 'Play from index: ', index
+    SC.stream "/tracks/#{$rootScope.activeTrackList[index].id}", (sound) ->
+      $rootScope.$apply ->
+        if $rootScope.activeTrack?
+          $rootScope.activeTrack.stop()
+
+        $rootScope.activeTrack = sound
+      sound.play()
+    return
 
   return soundcloud
 ])
